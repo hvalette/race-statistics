@@ -25,7 +25,7 @@ export function ThemeButton() {
           {theme === 'light' ? <SunIcon /> : <MoonIcon />}
         </Button>
       </DropdownMenuTrigger>
-      <DropdownMenuContent>
+      <DropdownMenuContent align="end">
         {themes.map((theme) => (
           <DropdownMenuItem
             key={theme.value}

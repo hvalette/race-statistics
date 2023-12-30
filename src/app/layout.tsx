@@ -6,6 +6,7 @@ import { Metadata, Viewport } from 'next';
 import { cn } from '@/lib/utils';
 import { ThemeProvider } from '@/components/theme-provider';
 import { Header } from '@/components/header/header';
+import { Footer } from '@/components/footer';
 
 const fontSans = FontSans({
   subsets: ['latin'],
@@ -41,6 +42,7 @@ export default function RootLayout({ children }: { children: ReactNode }) {
         >
           <Header />
           {children}
+          <Footer />
         </ThemeProvider>
       </body>
     </html>

@@ -2,7 +2,7 @@ import { promises as fs } from 'fs';
 
 export type Result = {
   bibNumber: string;
-  time: Date;
+  time: number;
   rank: string;
   name: string;
   gender: {
@@ -25,15 +25,5 @@ export async function getResults(
     `${process.cwd()}/data/${city}/${year}/${race}/results.json`,
     'utf8'
   );
-  return JSON.parse(file, (key, value) => {
-    if (key === 'time') {
-      const [hours, minutes, seconds] = value.split(':');
-      const time = new Date();
-      time.setHours(Number(hours));
-      time.setMinutes(Number(minutes));
-      time.setSeconds(Number(seconds));
-      return time;
-    }
-    return value;
-  });
+  return JSON.parse(file);
 }

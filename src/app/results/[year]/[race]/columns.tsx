@@ -1,7 +1,7 @@
 'use client';
 
 import { Result } from '@/lib/results';
-import { getFlagEmoji } from '@/lib/utils';
+import { formatTimeInSeconds, getFlagEmoji } from '@/lib/utils';
 import { ColumnDef } from '@tanstack/react-table';
 
 export const columns: ColumnDef<Result>[] = [
@@ -34,11 +34,7 @@ export const columns: ColumnDef<Result>[] = [
   {
     accessorKey: 'time',
     header: 'Temps',
-    cell: ({ row }) =>
-      Intl.DateTimeFormat('fr-FR', {
-        timeStyle: 'medium',
-        hour12: false,
-      }).format(row.getValue('time')),
+    cell: ({ row }) => formatTimeInSeconds(row.original.time),
     enableGlobalFilter: false,
   },
   {

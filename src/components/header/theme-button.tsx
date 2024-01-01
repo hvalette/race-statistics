@@ -17,12 +17,12 @@ const themes = [
 ];
 
 export function ThemeButton() {
-  const { theme, setTheme } = useTheme();
+  const { resolvedTheme, setTheme } = useTheme();
   return (
     <DropdownMenu>
       <DropdownMenuTrigger asChild>
         <Button size="icon" variant="ghost">
-          {theme === 'light' ? <SunIcon /> : <MoonIcon />}
+          {resolvedTheme === 'light' ? <SunIcon /> : <MoonIcon />}
         </Button>
       </DropdownMenuTrigger>
       <DropdownMenuContent align="end">

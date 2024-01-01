@@ -41,7 +41,7 @@ export default function RootLayout({ children }: { children: ReactNode }) {
           disableTransitionOnChange
         >
           <Header />
-          {children}
+          <main className="container mx-auto py-10">{children}</main>
           <Footer />
         </ThemeProvider>
       </body>

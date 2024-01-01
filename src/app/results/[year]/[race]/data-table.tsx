@@ -62,30 +62,34 @@ export function DataTable<TData, TValue>({
           placeholder="Rechercher par nom ou dossard"
           value={globalFilter ?? ''}
           onChange={(event) => setGlobalFilter(String(event.target.value))}
-          className="max-w-sm"
+          className="w-full sm:max-w-sm"
         />
-        <ToggleGroup
-          type="single"
-          variant={'outline'}
-          value={
-            (table.getColumn('gender_category')?.getFilterValue() as string) +
-              '' || undefined
-          }
-          onValueChange={(value) => {
-            console.log(value || undefined);
-            table
-              .getColumn('gender_category')
-              ?.setFilterValue(value || undefined);
-          }}
-        >
-          <ToggleGroupItem value="M" className="w-10">
-            M
-          </ToggleGroupItem>
-          <ToggleGroupItem value="F" className="w-10">
-            F
-          </ToggleGroupItem>
-        </ToggleGroup>
-        <DataTableCategoriesFilter table={table} />
+        <div className="hidden sm:block">
+          <ToggleGroup
+            type="single"
+            variant={'outline'}
+            value={
+              (table.getColumn('gender_category')?.getFilterValue() as string) +
+                '' || undefined
+            }
+            onValueChange={(value) => {
+              console.log(value || undefined);
+              table
+                .getColumn('gender_category')
+                ?.setFilterValue(value || undefined);
+            }}
+          >
+            <ToggleGroupItem value="M" className="w-10">
+              M
+            </ToggleGroupItem>
+            <ToggleGroupItem value="F" className="w-10">
+              F
+            </ToggleGroupItem>
+          </ToggleGroup>
+        </div>
+        <div className="hidden sm:block">
+          <DataTableCategoriesFilter table={table} />
+        </div>
       </div>
       <div className="rounded-md border">
         <Table>

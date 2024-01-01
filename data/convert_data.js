@@ -14,16 +14,23 @@ const inputData = fs.readFileSync(inputFilePath);
 const jsonData = JSON.parse(inputData);
 
 // Define the pattern to extract the rank and category or gender
-const pattern = /(\w+)\s\((\d+)\.\)/;
+const rankPattern = /(\w+)\s\((\d+)\.\)/;
+
+// Define the pattern to extract the time
+const timePattern = /(\d+):(\d+):(\d+)/;
 
 // Function to convert the data format
 function convertData(inputData) {
   return inputData.map((entry) => {
-    const matchesGender = entry[4]?.match(pattern);
-    const matchesCategory = entry[5]?.match(pattern);
+    const matchesGender = entry[4]?.match(rankPattern);
+    const matchesCategory = entry[5]?.match(rankPattern);
+    const matchesTime = entry[10]?.match(timePattern);
     return {
       bibNumber: entry[2],
-      time: entry[10],
+      time:
+        parseInt(matchesTime[1]) * 3600 +
+        parseInt(matchesTime[2]) * 60 +
+        parseInt(matchesTime[3]),
       rank: entry[1].split('.')[0],
       name: entry[3],
       gender: {
